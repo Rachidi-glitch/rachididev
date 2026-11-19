@@ -1,0 +1,135 @@
+@config "../tailwind.config.mjs";
+@import "tailwindcss";
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-dark text-white antialiased;
+  }
+
+  ::selection {
+    @apply bg-brand/40 text-white;
+  }
+
+  :focus-visible {
+    outline: 2px solid #0a84ff;
+    outline-offset: 2px;
+  }
+}
+
+.home-starfield > section {
+  isolation: isolate;
+  overflow: hidden;
+  position: relative;
+}
+
+.home-starfield > section::before {
+  animation: starfield-drift 45s linear infinite,
+    starfield-twinkle 9s ease-in-out infinite alternate;
+  background-image:
+    radial-gradient(circle, rgb(22 136 255 / 42%) 1px, transparent 1.6px),
+    radial-gradient(circle, rgb(34 211 238 / 30%) 1px, transparent 1.6px),
+    radial-gradient(circle, rgb(10 132 255 / 24%) 1.5px, transparent 2px);
+  background-position:
+    0 0,
+    67px 101px,
+    144px 57px;
+  background-size:
+    190px 190px,
+    270px 270px,
+    340px 340px;
+  content: "";
+  inset: -48px;
+  pointer-events: none;
+  position: absolute;
+  z-index: 0;
+}
+
+.home-starfield > section::after {
+  background-image:
+    radial-gradient(circle, rgb(22 136 255 / 90%) 1px, transparent 2px),
+    radial-gradient(circle, rgb(34 211 238 / 90%) 1px, transparent 2px),
+    radial-gradient(circle, rgb(10 132 255 / 85%) 1.5px, transparent 2.5px),
+    radial-gradient(circle, rgb(34 211 238 / 80%) 1px, transparent 2px),
+    radial-gradient(circle, rgb(22 136 255 / 85%) 1px, transparent 2px),
+    radial-gradient(circle, rgb(34 211 238 / 85%) 1px, transparent 2px);
+  background-position:
+    10% 12%,
+    83% 24%,
+    24% 78%,
+    70% 80%,
+    48% 34%,
+    90% 60%;
+  background-repeat: no-repeat;
+  background-size: 4px 4px;
+  content: "";
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  transition:
+    background-position 450ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 200ms ease;
+  z-index: 0;
+}
+
+.home-starfield > section[data-cursor-active="true"]::after {
+  background-position:
+    calc(var(--cursor-x) - 21px) calc(var(--cursor-y) - 11px),
+    calc(var(--cursor-x) + 22px) calc(var(--cursor-y) - 18px),
+    calc(var(--cursor-x) - 7px) calc(var(--cursor-y) + 24px),
+    calc(var(--cursor-x) + 31px) calc(var(--cursor-y) + 14px),
+    calc(var(--cursor-x) - 34px) calc(var(--cursor-y) + 5px),
+    calc(var(--cursor-x) + 2px) calc(var(--cursor-y) - 30px);
+  opacity: 0.9;
+}
+
+.home-starfield > section > * {
+  position: relative;
+  z-index: 1;
+}
+
+.home-starfield > section > .absolute {
+  position: absolute;
+}
+
+@keyframes starfield-drift {
+  to {
+    background-position:
+      190px 190px,
+      -203px 371px,
+      484px -283px;
+  }
+}
+
+@keyframes starfield-twinkle {
+  from {
+    opacity: 0.55;
+  }
+
+  to {
+    opacity: 0.85;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .home-starfield > section::before {
+    animation: none;
+  }
+
+  .home-starfield > section::after {
+    transition: none;
+  }
+}

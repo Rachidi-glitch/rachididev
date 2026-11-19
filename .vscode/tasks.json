@@ -1,0 +1,15 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Copy Crave project image",
+			"type": "shell",
+			"command": "node",
+			"args": [
+				"-e",
+				"require('node:fs').copyFileSync('C:\\\\Users\\\\DT\\\\AppData\\\\Roaming\\\\Code\\\\agentSessionData\\\\08077175-8855-49f3-a060-c8916b43c6ff\\\\attachments\\\\4361bc5f-be85-4914-a607-ce47300b33a1\\\\crave-hero-800x500.jpg', 'public\\\\images\\\\projects\\\\crave-hero-800x500.jpg')"
+			],
+			"isBackground": false
+		}
+	]
+}

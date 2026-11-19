@@ -1,0 +1,26 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model QuoteRequest {
+  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  name        String   @db.Text
+  email       String   @db.Text
+  phone       String?  @db.Text
+  projectType String   @map("project_type") @db.Text
+  budget      String?  @db.Text
+  deadline    String?  @db.Text
+  message     String   @db.Text
+  status      String   @default("new") @db.Text
+
+  @@index([status], map: "quote_requests_status_idx")
+  @@index([createdAt(sort: Desc)], map: "quote_requests_created_at_idx")
+  @@map("quote_requests")
+}
