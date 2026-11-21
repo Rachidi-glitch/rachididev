@@ -34,6 +34,7 @@ paramètres de connexion de Prisma Postgres :
 DATABASE_URL=
 DIRECT_URL=
 RESEND_API_KEY=
+RESEND_FROM_EMAIL=
 CONTACT_EMAIL=
 \`\`\`
 
@@ -48,10 +49,13 @@ table `public.quote_requests`.
 Dans Prisma Console, ouvrez la base et sélectionnez **Connect to your
 database**. Renseignez `DATABASE_URL` avec l'URL poolée (`pooled.db.prisma.io`)
 pour l'application et `DIRECT_URL` avec l'URL directe (`db.prisma.io`) pour les
-commandes Prisma. Placez les deux variables dans `.env.local` à la racine du projet. La commande
-`pnpm db:push` charge ce fichier explicitement, car Prisma CLI ne lit pas
-`.env.local` par défaut. Next.js le charge aussi. Ne partagez pas ces URL et ne
-les commitez pas. Après avoir configuré les URL,
+commandes Prisma. Placez les URL dans `.env.local` à la racine du projet. Pour
+Resend, renseignez `RESEND_API_KEY`, `CONTACT_EMAIL` et `RESEND_FROM_EMAIL`
+(par exemple `RachidiDev <contact@rachididev.site>` après avoir vérifié ce
+domaine dans Resend). La commande `pnpm db:push` charge ce fichier
+explicitement, car Prisma CLI ne lit pas `.env.local` par défaut. Next.js le
+charge aussi. Ne partagez pas ces URL et ne les commitez pas. Après avoir
+configuré les URL,
 exécutez `pnpm db:push` une première fois pour créer ou synchroniser la table,
 puis `pnpm db:generate` si le client Prisma doit être régénéré.
 Les anciennes clés `NEXT_PUBLIC_SUPABASE_*` et `SUPABASE_SERVICE_ROLE_KEY` ne

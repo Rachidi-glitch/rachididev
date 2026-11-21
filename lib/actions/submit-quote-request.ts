@@ -88,7 +88,7 @@ export async function submitQuoteRequest(
     return {
       status: "success",
       message:
-        "Votre demande est bien enregistrée. Cependant, l’e-mail de confirmation n’a pas pu être envoyé. Je reviendrai vers vous prochainement.",
+        "Votre demande est bien enregistrée, mais l’e-mail n’a pas pu être envoyé. Vérifiez la configuration Resend et que le domaine de l’expéditeur est vérifié. Je reviendrai vers vous prochainement.",
     };
   }
 

@@ -47,13 +47,18 @@ function clientEmailHtml(data: ContactFormValues) {
 export async function sendQuoteNotificationEmails(data: ContactFormValues) {
   const resend = getResendClient();
   const adminEmail = process.env.CONTACT_EMAIL;
+  const fromEmail = process.env.RESEND_FROM_EMAIL?.trim();
 
   if (!adminEmail) {
     throw new Error("CONTACT_EMAIL n'est pas configuré.");
   }
 
+  if (!fromEmail) {
+    throw new Error("RESEND_FROM_EMAIL n'est pas configurée.");
+  }
+
   const adminResult = await resend.emails.send({
-    from: "RachidiDev <onboarding@resend.dev>",
+    from: fromEmail,
     to: adminEmail,
     replyTo: data.email,
     subject: `Nouvelle demande de devis — ${data.name}`,
@@ -67,7 +72,7 @@ export async function sendQuoteNotificationEmails(data: ContactFormValues) {
   }
 
   const clientResult = await resend.emails.send({
-    from: "RachidiDev <onboarding@resend.dev>",
+    from: fromEmail,
     to: data.email,
     subject: "Votre demande a bien été reçue",
     html: clientEmailHtml(data),
