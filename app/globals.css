@@ -115,6 +115,28 @@
   }
 }
 
+.error-mascot {
+  margin-inline: auto;
+  width: min(52vw, 220px);
+}
+
+.error-mascot__float {
+  animation: error-mascot-float 3s ease-in-out infinite;
+  filter: drop-shadow(0 16px 30px rgb(10 132 255 / 20%));
+  width: 100%;
+}
+
+@keyframes error-mascot-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-2deg);
+  }
+
+  50% {
+    transform: translateY(-10px) rotate(2deg);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -131,5 +153,9 @@
 
   .home-starfield > section::after {
     transition: none;
+  }
+
+  .error-mascot__float {
+    animation: none;
   }
 }

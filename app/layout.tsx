@@ -5,16 +5,20 @@ import { socials } from "@/data/socials";
 import "./globals.css";
 
 const siteUrl = "https://rachididev.site";
+const socialImage = {
+  url: "/images/profile/hero-photo.png",
+  alt: "RachidiDev, développeur web à Cotonou",
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   applicationName: "RachidiDev",
   title: {
-    default: "RachidiDev — Développeur Fullstack WordPress & Web moderne",
+    default: "RachidiDev — Développeur web à Cotonou",
     template: "%s | RachidiDev",
   },
   description:
-    "RachidiDev, développeur Fullstack spécialisé WordPress depuis plus de 7 ans et développement web moderne (Next.js, React, TypeScript). Sites vitrines, e-commerce et applications web sur mesure.",
+    "Développeur web freelance à Cotonou, spécialisé en WordPress, Next.js et React. Création de sites vitrines, boutiques WooCommerce et applications web sur mesure.",
   keywords: [
     "développeur web",
     "développeur fullstack",
@@ -40,24 +44,16 @@ export const metadata: Metadata = {
     locale: "fr_FR",
     url: siteUrl,
     siteName: "RachidiDev",
-    title: "RachidiDev — Développeur Fullstack WordPress & Web moderne",
+    title: "RachidiDev — Développeur web à Cotonou",
     description:
-      "Développeur Fullstack spécialisé WordPress et développement web moderne. Sites vitrines, e-commerce et applications web sur mesure.",
-    images: [
-      {
-        url: "/images/profile/hero-photo.jpg",
-        width: 1200,
-        height: 630,
-        alt: "RachidiDev, développeur Fullstack",
-      },
-    ],
+      "Développeur web freelance à Cotonou. Sites WordPress, vitrines, boutiques en ligne et applications web.",
+    images: [socialImage],
   },
   twitter: {
     card: "summary_large_image",
-    title: "RachidiDev — Développeur Fullstack",
-    description:
-      "Développeur Fullstack spécialisé WordPress et développement web moderne.",
-    images: ["/images/profile/hero-photo.jpg"],
+    title: "RachidiDev — Développeur web à Cotonou",
+    description: "Sites WordPress, sites vitrines et applications web sur mesure.",
+    images: [socialImage.url],
   },
   robots: {
     index: true,
@@ -71,7 +67,9 @@ const personJsonLd = {
   name: "RachidiDev",
   jobTitle: "Développeur Fullstack",
   url: siteUrl,
-  sameAs: [socials.linkedin],
+  email: "contact@rachididev.site",
+  telephone: "+2290141786631",
+  sameAs: [socials.github, socials.linkedin, socials.tiktok],
   knowsAbout: [
     "WordPress",
     "Next.js",
@@ -90,6 +88,17 @@ const professionalServiceJsonLd = {
   description:
     "Développement de sites WordPress, sites vitrines, applications web et solutions e-commerce sur mesure.",
   url: siteUrl,
+  email: "contact@rachididev.site",
+  telephone: "+2290141786631",
+  areaServed: {
+    "@type": "Country",
+    name: "Bénin",
+  },
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Cotonou",
+    addressCountry: "BJ",
+  },
 };
 
 const websiteJsonLd = {
@@ -98,7 +107,16 @@ const websiteJsonLd = {
   name: "RachidiDev",
   url: siteUrl,
   inLanguage: "fr-FR",
+  publisher: {
+    "@type": "Person",
+    name: "RachidiDev",
+    url: siteUrl,
+  },
 };
+
+function serializeJsonLd(value: object) {
+  return JSON.stringify(value).replace(/</g, "\\u003c");
+}
 
 export default function RootLayout({
   children,
@@ -110,17 +128,17 @@ export default function RootLayout({
       <body className="flex min-h-screen flex-col font-sans">
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+          dangerouslySetInnerHTML={{ __html: serializeJsonLd(personJsonLd) }}
         />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(professionalServiceJsonLd),
+            __html: serializeJsonLd(professionalServiceJsonLd),
           }}
         />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+          dangerouslySetInnerHTML={{ __html: serializeJsonLd(websiteJsonLd) }}
         />
         <Navbar />
         <main className="flex-1">{children}</main>

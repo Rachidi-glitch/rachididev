@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import { IconDownload } from "@tabler/icons-react";
 import { Container } from "@/components/ui/Container";
@@ -13,13 +12,14 @@ import { QuoteBlock } from "@/components/sections/QuoteBlock";
 import { CTA } from "@/components/sections/CTA";
 import { skills } from "@/data/skills";
 import { DynamicIcon } from "@/components/ui/DynamicIcon";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "À propos",
   description:
-    "Découvrez le parcours de RachidiDev, développeur Fullstack spécialisé WordPress et développement web moderne.",
-  alternates: { canonical: "/a-propos" },
-};
+    "Découvrez RachidiDev, développeur web freelance à Cotonou : son parcours, son expérience WordPress et ses compétences en développement web.",
+  path: "/a-propos",
+});
 
 const stats = [
   { value: "7+", label: "ans d&apos;expérience WordPress" },

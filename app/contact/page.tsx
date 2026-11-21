@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import {
   IconDownload,
   IconMail,
@@ -11,13 +10,14 @@ import { Button } from "@/components/ui/Button";
 import { FadeIn } from "@/components/animations/FadeIn";
 import { ContactForm } from "@/components/contact/ContactForm";
 import { contactInfo } from "@/data/socials";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Contact",
+export const metadata = createPageMetadata({
+  title: "Contact et devis",
   description:
-    "Demandez un devis à RachidiDev pour votre projet WordPress, site vitrine, e-commerce ou application web.",
-  alternates: { canonical: "/contact" },
-};
+    "Contactez RachidiDev à Cotonou pour un devis de site WordPress, site vitrine, boutique en ligne ou application web.",
+  path: "/contact",
+});
 
 export default function ContactPage() {
   return (

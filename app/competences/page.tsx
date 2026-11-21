@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 import { SectionTitle } from "@/components/ui/SectionTitle";
 import { Badge } from "@/components/ui/Badge";
@@ -6,13 +5,14 @@ import { SkillCard } from "@/components/ui/SkillCard";
 import { StaggerGrid, StaggerItem } from "@/components/animations/StaggerGrid";
 import { CTA } from "@/components/sections/CTA";
 import { skills } from "@/data/skills";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Compétences",
+export const metadata = createPageMetadata({
+  title: "Compétences web",
   description:
-    "Les technologies et outils maîtrisés par RachidiDev : WordPress, Next.js, React, TypeScript, Node.js, Supabase et plus.",
-  alternates: { canonical: "/competences" },
-};
+    "Découvrez les compétences de RachidiDev en WordPress, Next.js, React, TypeScript, PHP, Prisma et PostgreSQL.",
+  path: "/competences",
+});
 
 export default function SkillsPage() {
   return (

@@ -1,15 +1,15 @@
-import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 import { Badge } from "@/components/ui/Badge";
 import { CTA } from "@/components/sections/CTA";
 import { ProjectsClient } from "./ProjectsClient";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Projets",
+export const metadata = createPageMetadata({
+  title: "Projets web",
   description:
-    "Découvrez une sélection de projets WordPress, Next.js/React et e-commerce réalisés par RachidiDev.",
-  alternates: { canonical: "/projets" },
-};
+    "Découvrez les sites vitrines, projets WordPress, boutiques WooCommerce et applications web réalisés par RachidiDev.",
+  path: "/projets",
+});
 
 export default function ProjectsPage() {
   return (

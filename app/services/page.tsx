@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 import { SectionTitle } from "@/components/ui/SectionTitle";
 import { Badge } from "@/components/ui/Badge";
@@ -6,13 +5,14 @@ import { ServiceCard } from "@/components/ui/ServiceCard";
 import { StaggerGrid, StaggerItem } from "@/components/animations/StaggerGrid";
 import { CTA } from "@/components/sections/CTA";
 import { services } from "@/data/services";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Services",
+export const metadata = createPageMetadata({
+  title: "Services web",
   description:
-    "Développement WordPress, sites vitrines, applications web, e-commerce et API sur mesure avec RachidiDev.",
-  alternates: { canonical: "/services" },
-};
+    "Création de sites WordPress, sites vitrines, boutiques WooCommerce et applications web sur mesure par RachidiDev à Cotonou.",
+  path: "/services",
+});
 
 export default function ServicesPage() {
   return (
