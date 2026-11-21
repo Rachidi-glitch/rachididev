@@ -11,6 +11,30 @@ export type SubmitQuoteState = {
   message?: string;
 };
 
+function getDatabaseErrorMessage(error: unknown) {
+  const code =
+    typeof error === "object" &&
+    error !== null &&
+    "code" in error &&
+    typeof error.code === "string"
+      ? error.code
+      : undefined;
+
+  if (code === "P2021") {
+    return "La table des demandes n’existe pas encore. Exécutez « pnpm db:push » puis réessayez.";
+  }
+
+  if (code === "P2022") {
+    return "La structure de la table des demandes ne correspond pas au schéma Prisma. Exécutez « pnpm db:push » puis réessayez.";
+  }
+
+  if (code === "P1000" || code === "P1001" || code === "P1002") {
+    return "La connexion à la base PostgreSQL a échoué. Vérifiez DATABASE_URL, le mot de passe et l’accès réseau.";
+  }
+
+  return "Votre demande n’a pas pu être enregistrée. Vérifiez les paramètres de connexion PostgreSQL et la configuration du schéma Prisma.";
+}
+
 export async function submitQuoteRequest(
   values: ContactFormValues
 ): Promise<SubmitQuoteState> {
@@ -23,7 +47,7 @@ export async function submitQuoteRequest(
     };
   }
 
-  if (!process.env.DATABASE_URL) {
+  if (!process.env.DATABASE_URL?.trim()) {
     console.error("DATABASE_URL n'est pas configurée.");
     return {
       status: "error",
@@ -49,8 +73,7 @@ export async function submitQuoteRequest(
     console.error("Erreur lors de l'enregistrement de la demande :", err);
     return {
       status: "error",
-      message:
-        "Votre demande n’a pas pu être enregistrée. Vérifiez la connexion PostgreSQL et la disponibilité de la table des demandes, puis réessayez.",
+      message: getDatabaseErrorMessage(err),
     };
   }
 

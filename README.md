@@ -43,13 +43,15 @@ CONTACT_EMAIL=
 
 Supabase héberge toujours la base PostgreSQL ; Prisma est utilisé comme ORM
 côté serveur. Le modèle `QuoteRequest` de `prisma/schema.prisma` correspond à
-la table `quote_requests`, créée par `supabase/schema.sql`.
+la table `public.quote_requests`.
 
 Renseignez `DATABASE_URL` avec l'URL de connexion poolée de Supabase et
-`DIRECT_URL` avec l'URL directe de la base (utilisée par les commandes Prisma).
-Ne partagez pas ces URL et ne les commitez pas. Si la table n'existe pas encore,
-exécutez `supabase/schema.sql` dans l'éditeur SQL de Supabase, puis lancez
-`pnpm db:generate`.
+`DIRECT_URL` avec l'URL directe de la base. Prisma CLI lit le fichier `.env` à
+la racine du projet; Next.js lit aussi `.env.local`. Renseignez les deux URL
+dans `.env` pour les commandes Prisma et dans `.env.local` pour l'application.
+Ne partagez pas ces URL et ne les commitez pas. Après avoir configuré les URL,
+exécutez `pnpm db:push` une première fois pour créer ou synchroniser la table,
+puis `pnpm db:generate` si le client Prisma doit être régénéré.
 Les anciennes clés `NEXT_PUBLIC_SUPABASE_*` et `SUPABASE_SERVICE_ROLE_KEY` ne
 sont plus utilisées par l'application.
 
