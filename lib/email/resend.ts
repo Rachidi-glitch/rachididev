@@ -52,7 +52,7 @@ export async function sendQuoteNotificationEmails(data: ContactFormValues) {
     throw new Error("CONTACT_EMAIL n'est pas configuré.");
   }
 
-  await resend.emails.send({
+  const adminResult = await resend.emails.send({
     from: "RachidiDev <onboarding@resend.dev>",
     to: adminEmail,
     replyTo: data.email,
@@ -60,10 +60,22 @@ export async function sendQuoteNotificationEmails(data: ContactFormValues) {
     html: adminEmailHtml(data),
   });
 
-  await resend.emails.send({
+  if (adminResult.error) {
+    throw new Error(
+      `Échec de l'envoi de la notification à l'administrateur : ${adminResult.error.message}`
+    );
+  }
+
+  const clientResult = await resend.emails.send({
     from: "RachidiDev <onboarding@resend.dev>",
     to: data.email,
     subject: "Votre demande a bien été reçue",
     html: clientEmailHtml(data),
   });
+
+  if (clientResult.error) {
+    throw new Error(
+      `Échec de l'envoi de la confirmation au client : ${clientResult.error.message}`
+    );
+  }
 }
