@@ -9,7 +9,7 @@
     "start": "next start",
     "lint": "next lint",
     "db:generate": "prisma generate",
-    "db:push": "prisma db push"
+    "db:push": "node --env-file=.env.local ./node_modules/prisma/build/index.js db push"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.9.1",
