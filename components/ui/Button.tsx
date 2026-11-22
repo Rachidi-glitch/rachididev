@@ -47,10 +47,22 @@ export function Button({
   const classes = cn(base, variants[variant], sizes[size], className);
 
   if (href) {
+    if (download) {
+      return (
+        <a
+          href={href}
+          download
+          className={classes}
+          aria-label={ariaLabel}
+        >
+          {children}
+        </a>
+      );
+    }
+
     return (
       <Link
         href={href}
-        download={download}
         className={classes}
         aria-label={ariaLabel}
       >
