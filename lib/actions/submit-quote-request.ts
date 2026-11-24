@@ -7,7 +7,7 @@ import {
 } from "@/lib/validations/contact";
 
 export type SubmitQuoteState = {
-  status: "idle" | "success" | "error";
+  status: "idle" | "success" | "warning" | "error";
   message?: string;
 };
 
@@ -77,18 +77,39 @@ export async function submitQuoteRequest(
     };
   }
 
+  let emailResult: Awaited<
+    ReturnType<
+      (typeof import("@/lib/email/resend"))["sendQuoteNotificationEmails"]
+    >
+  >;
+
   try {
     const { sendQuoteNotificationEmails } = await import("@/lib/email/resend");
-    await sendQuoteNotificationEmails(parsed.data);
-  } catch (err) {
-    console.error(
-      "La demande est enregistrée, mais l'envoi des notifications e-mail a échoué :",
-      err
-    );
+    emailResult = await sendQuoteNotificationEmails(parsed.data);
+  } catch (error) {
+    console.error("Configuration d'envoi Resend invalide :", error);
+    const detail =
+      error instanceof Error ? error.message : "Erreur de configuration Resend.";
+
     return {
-      status: "success",
-      message:
-        "Votre demande est bien enregistrée, mais l’e-mail n’a pas pu être envoyé. Vérifiez la configuration Resend et que le domaine de l’expéditeur est vérifié. Je reviendrai vers vous prochainement.",
+      status: "warning",
+      message: `Votre demande est enregistrée, mais les e-mails n’ont pas pu être envoyés : ${detail}`,
+    };
+  }
+
+  const failedDeliveries = [
+    !emailResult.admin.sent
+      ? `notification à l’administrateur : ${emailResult.admin.error}`
+      : null,
+    !emailResult.client.sent
+      ? `confirmation au demandeur : ${emailResult.client.error}`
+      : null,
+  ].filter((failure): failure is string => failure !== null);
+
+  if (failedDeliveries.length > 0) {
+    return {
+      status: "warning",
+      message: `Votre demande est enregistrée, mais ${failedDeliveries.join(" ; ")}.`,
     };
   }
 

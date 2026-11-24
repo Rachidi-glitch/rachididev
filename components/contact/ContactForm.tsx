@@ -21,7 +21,7 @@ const labelClasses = "mb-2 block text-sm font-medium text-white";
 
 export function ContactForm() {
   const [feedback, setFeedback] = useState<{
-    type: "success" | "error";
+    type: "success" | "warning" | "error";
     message: string;
   } | null>(null);
 
@@ -44,8 +44,11 @@ export function ContactForm() {
     setFeedback(null);
     const result = await submitQuoteRequest(values);
 
-    if (result.status === "success") {
-      setFeedback({ type: "success", message: result.message ?? "" });
+    if (result.status === "success" || result.status === "warning") {
+      setFeedback({
+        type: result.status,
+        message: result.message ?? "",
+      });
       reset();
     } else {
       setFeedback({
@@ -193,7 +196,9 @@ export function ContactForm() {
           className={`flex items-center gap-2 rounded-xl border px-4 py-3 text-sm ${
             feedback.type === "success"
               ? "border-brand/40 bg-brand/10 text-brand-light"
-              : "border-red-400/40 bg-red-400/10 text-red-300"
+              : feedback.type === "warning"
+                ? "border-amber-400/40 bg-amber-400/10 text-amber-200"
+                : "border-red-400/40 bg-red-400/10 text-red-300"
           }`}
         >
           {feedback.type === "success" && <IconCheck size={16} />}

@@ -44,6 +44,57 @@ function clientEmailHtml(data: ContactFormValues) {
   </div>`;
 }
 
+export type EmailDeliveryResult =
+  | { sent: true }
+  | { sent: false; error: string };
+
+function getErrorMessage(error: unknown) {
+  if (typeof error === "object" && error !== null && "message" in error) {
+    const message = error.message;
+    if (typeof message === "string" && message.trim()) {
+      return message;
+    }
+  }
+
+  return error instanceof Error ? error.message : "Erreur Resend inconnue.";
+}
+
+function getSafeErrorMessage(error: unknown) {
+  return getErrorMessage(error)
+    .replace(/\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b/gi, "[adresse masquée]")
+    .replace(/\bre_[A-Za-z0-9_-]+\b/g, "[clé masquée]")
+    .replace(/\bBearer\s+\S+/gi, "Bearer [masqué]")
+    .slice(0, 300);
+}
+
+async function sendEmail(
+  resend: Resend,
+  recipient: string,
+  subject: string,
+  html: string,
+  replyTo?: string
+): Promise<EmailDeliveryResult> {
+  try {
+    const { error } = await resend.emails.send({
+      from: process.env.RESEND_FROM_EMAIL!.trim(),
+      to: recipient,
+      subject,
+      html,
+      ...(replyTo ? { replyTo } : {}),
+    });
+
+    if (error) {
+      console.error(`Resend a refusé l'e-mail « ${subject} » :`, error);
+      return { sent: false, error: getSafeErrorMessage(error) };
+    }
+
+    return { sent: true };
+  } catch (error) {
+    console.error(`Échec réseau lors de l'envoi « ${subject} » :`, error);
+    return { sent: false, error: getSafeErrorMessage(error) };
+  }
+}
+
 export async function sendQuoteNotificationEmails(data: ContactFormValues) {
   const resend = getResendClient();
   const adminEmail = process.env.CONTACT_EMAIL;
@@ -57,30 +108,21 @@ export async function sendQuoteNotificationEmails(data: ContactFormValues) {
     throw new Error("RESEND_FROM_EMAIL n'est pas configurée.");
   }
 
-  const adminResult = await resend.emails.send({
-    from: fromEmail,
-    to: adminEmail,
-    replyTo: data.email,
-    subject: `Nouvelle demande de devis — ${data.name}`,
-    html: adminEmailHtml(data),
-  });
+  const [admin, client] = await Promise.all([
+    sendEmail(
+      resend,
+      adminEmail,
+      `Nouvelle demande de devis — ${data.name}`,
+      adminEmailHtml(data),
+      data.email
+    ),
+    sendEmail(
+      resend,
+      data.email,
+      "Votre demande a bien été reçue",
+      clientEmailHtml(data)
+    ),
+  ]);
 
-  if (adminResult.error) {
-    throw new Error(
-      `Échec de l'envoi de la notification à l'administrateur : ${adminResult.error.message}`
-    );
-  }
-
-  const clientResult = await resend.emails.send({
-    from: fromEmail,
-    to: data.email,
-    subject: "Votre demande a bien été reçue",
-    html: clientEmailHtml(data),
-  });
-
-  if (clientResult.error) {
-    throw new Error(
-      `Échec de l'envoi de la confirmation au client : ${clientResult.error.message}`
-    );
-  }
+  return { admin, client };
 }
