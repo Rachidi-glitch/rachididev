@@ -16,6 +16,7 @@ import { Button } from "@/components/ui/Button";
 
 const inputClasses =
   "w-full rounded-xl border border-white/10 bg-dark-card/60 px-4 py-3 text-sm text-white placeholder:text-muted focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/30";
+const selectClasses = `${inputClasses} scheme-dark`;
 
 const labelClasses = "mb-2 block text-sm font-medium text-white";
 
@@ -120,16 +121,20 @@ export function ContactForm() {
           </label>
           <select
             id="projectType"
-            className={inputClasses}
+            className={selectClasses}
             defaultValue=""
             aria-invalid={!!errors.projectType}
             {...register("projectType")}
           >
-            <option value="" disabled>
+            <option value="" disabled className="bg-dark-card text-white">
               Sélectionnez un type de projet
             </option>
             {projectTypes.map((type) => (
-              <option key={type} value={type}>
+              <option
+                key={type}
+                value={type}
+                className="bg-dark-card text-white"
+              >
                 {type}
               </option>
             ))}
@@ -145,10 +150,21 @@ export function ContactForm() {
           <label htmlFor="budget" className={labelClasses}>
             Budget estimatif
           </label>
-          <select id="budget" className={inputClasses} defaultValue="" {...register("budget")}>
-            <option value="">Sélectionnez un budget</option>
+          <select
+            id="budget"
+            className={selectClasses}
+            defaultValue=""
+            {...register("budget")}
+          >
+            <option value="" className="bg-dark-card text-white">
+              Sélectionnez un budget
+            </option>
             {budgets.map((budget) => (
-              <option key={budget} value={budget}>
+              <option
+                key={budget}
+                value={budget}
+                className="bg-dark-card text-white"
+              >
                 {budget}
               </option>
             ))}
