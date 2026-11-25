@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { socials } from "@/data/socials";
@@ -124,8 +125,25 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="fr" data-scroll-behavior="smooth">
+    <html
+      lang="fr"
+      data-scroll-behavior="smooth"
+      data-theme="dark"
+      suppressHydrationWarning
+    >
       <body className="flex min-h-screen flex-col font-sans">
+        <Script id="theme-init" strategy="beforeInteractive">
+          {`(function () {
+            try {
+              var savedTheme = localStorage.getItem("rachididev-theme");
+              if (savedTheme === "light" || savedTheme === "dark") {
+                document.documentElement.dataset.theme = savedTheme;
+              }
+            } catch {
+              document.documentElement.dataset.theme = "dark";
+            }
+          })();`}
+        </Script>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: serializeJsonLd(personJsonLd) }}

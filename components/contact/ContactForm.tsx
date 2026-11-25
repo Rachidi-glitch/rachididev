@@ -16,7 +16,7 @@ import { Button } from "@/components/ui/Button";
 
 const inputClasses =
   "w-full rounded-xl border border-white/10 bg-dark-card/60 px-4 py-3 text-sm text-white placeholder:text-muted focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/30";
-const selectClasses = `${inputClasses} scheme-dark`;
+const selectClasses = inputClasses;
 
 const labelClasses = "mb-2 block text-sm font-medium text-white";
 

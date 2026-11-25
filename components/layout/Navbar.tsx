@@ -9,6 +9,7 @@ import { navLinks } from "@/lib/nav-links";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { MobileMenu } from "@/components/navigation/MobileMenu";
+import { ThemeToggle } from "@/components/layout/ThemeToggle";
 import { cn } from "@/lib/utils";
 
 export function Navbar() {
@@ -70,19 +71,23 @@ export function Navbar() {
           })}
         </nav>
 
+        <ThemeToggle />
+
         <div className="hidden md:block">
           <Button href="/contact" size="sm">
             Me contacter
           </Button>
         </div>
 
-        <button
-          className="rounded-full p-2 text-white hover:bg-white/10 md:hidden"
-          onClick={() => setMenuOpen(true)}
-          aria-label="Ouvrir le menu"
-        >
-          <IconMenu2 size={24} />
-        </button>
+        <div className="flex items-center gap-2 md:hidden">
+          <button
+            className="rounded-full p-2 text-white hover:bg-white/10"
+            onClick={() => setMenuOpen(true)}
+            aria-label="Ouvrir le menu"
+          >
+            <IconMenu2 size={24} />
+          </button>
+        </div>
       </Container>
 
       <MobileMenu open={menuOpen} onClose={() => setMenuOpen(false)} />
