@@ -138,20 +138,25 @@ async function sendEmail(
 export async function sendQuoteNotificationEmails(data: ContactFormValues) {
   const resend = getResendClient();
   const adminEmail = process.env.CONTACT_EMAIL;
-  const fromEmail = process.env.RESEND_FROM_EMAIL?.trim();
+  const clientFromEmail = process.env.RESEND_FROM_EMAIL?.trim();
+  const adminFromEmail = process.env.RESEND_ADMIN_FROM_EMAIL?.trim();
 
   if (!adminEmail) {
     throw new Error("CONTACT_EMAIL n'est pas configuré.");
   }
 
-  if (!fromEmail) {
+  if (!clientFromEmail) {
     throw new Error("RESEND_FROM_EMAIL n'est pas configurée.");
+  }
+
+  if (!adminFromEmail) {
+    throw new Error("RESEND_ADMIN_FROM_EMAIL n'est pas configurée.");
   }
 
   const [admin, client] = await Promise.all([
     sendEmail(
       resend,
-      fromEmail,
+      adminFromEmail,
       adminEmail,
       "notification à l’administrateur",
       `Nouvelle demande de devis — ${data.name}`,
@@ -160,7 +165,7 @@ export async function sendQuoteNotificationEmails(data: ContactFormValues) {
     ),
     sendEmail(
       resend,
-      fromEmail,
+      clientFromEmail,
       data.email,
       "confirmation au demandeur",
       "Votre demande a bien été reçue",

@@ -35,6 +35,7 @@ DATABASE_URL=
 DIRECT_URL=
 RESEND_API_KEY=
 RESEND_FROM_EMAIL=
+RESEND_ADMIN_FROM_EMAIL=
 CONTACT_EMAIL=
 \`\`\`
 
@@ -50,9 +51,13 @@ Dans Prisma Console, ouvrez la base et sélectionnez **Connect to your
 database**. Renseignez `DATABASE_URL` avec l'URL poolée (`pooled.db.prisma.io`)
 pour l'application et `DIRECT_URL` avec l'URL directe (`db.prisma.io`) pour les
 commandes Prisma. Placez les URL dans `.env.local` à la racine du projet. Pour
-Resend, renseignez `RESEND_API_KEY`, `CONTACT_EMAIL` et `RESEND_FROM_EMAIL`
-(par exemple `RachidiDev <contact@rachididev.site>` après avoir vérifié ce
-domaine dans Resend). La commande `pnpm db:push` charge ce fichier
+Resend, renseignez `RESEND_API_KEY`, `CONTACT_EMAIL`, `RESEND_FROM_EMAIL` et
+`RESEND_ADMIN_FROM_EMAIL`. Utilisez par exemple
+`RachidiDev <contact@rachididev.site>` comme expéditeur des confirmations client
+et `RachidiDev Notifications <notifications@rachididev.site>` pour les
+notifications administrateur. Les deux adresses d’expédition doivent utiliser
+un domaine vérifié dans Resend; `CONTACT_EMAIL` est l’adresse qui reçoit les
+demandes. La commande `pnpm db:push` charge ce fichier
 explicitement, car Prisma CLI ne lit pas `.env.local` par défaut. Next.js le
 charge aussi. Ne partagez pas ces URL et ne les commitez pas. Après avoir
 configuré les URL,
