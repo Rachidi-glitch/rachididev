@@ -17,7 +17,7 @@ import { createPageMetadata } from "@/lib/seo";
 export const metadata = createPageMetadata({
   title: "À propos",
   description:
-    "Découvrez RachidiDev, développeur web freelance à Cotonou : son parcours, son expérience WordPress et ses compétences en développement web.",
+    "Découvrez RachidiDev, développeur web fullstack & WordPress à Cotonou : son parcours, son expérience et ses compétences.",
   path: "/a-propos",
 });
 
@@ -54,10 +54,10 @@ export default function AboutPage() {
               <span className="text-brand-light">modernes et performantes</span>.
             </h1>
             <p className="mt-6 max-w-xl text-base leading-relaxed text-muted">
-              Je suis RachidiDev, développeur web avec près de 7 ans
-              d&apos;expérience en WordPress et 1 an en développement moderne. Je
-              transforme des idées en sites web performants, modernes et
-              faciles à utiliser.
+              Je suis RachidiDev, développeur web fullstack & WordPress avec
+              près de 7 ans d&apos;expérience en WordPress et 1 an en
+              développement moderne. Je transforme des idées en sites web
+              performants, modernes et faciles à utiliser.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <Button href="/contact" size="lg">

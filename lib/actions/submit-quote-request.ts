@@ -116,6 +116,6 @@ export async function submitQuoteRequest(
   return {
     status: "success",
     message:
-      "Votre demande a bien été envoyée. Je reviens vers vous très prochainement !",
+      "Votre demande est bien enregistrée et les e-mails ont été transmis au service d’envoi. Je reviens vers vous très prochainement. Si vous ne recevez pas la confirmation, pensez à vérifier vos courriers indésirables.",
   };
 }

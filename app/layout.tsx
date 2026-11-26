@@ -8,18 +8,18 @@ import "./globals.css";
 const siteUrl = "https://rachididev.site";
 const socialImage = {
   url: "/images/profile/hero-photo.png",
-  alt: "RachidiDev, développeur web à Cotonou",
+  alt: "RachidiDev, développeur web fullstack & WordPress",
 };
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   applicationName: "RachidiDev",
   title: {
-    default: "RachidiDev — Développeur web à Cotonou",
+    default: "RachidiDev — Développeur web fullstack & WordPress",
     template: "%s | RachidiDev",
   },
   description:
-    "Développeur web freelance à Cotonou, spécialisé en WordPress, Next.js et React. Création de sites vitrines, boutiques WooCommerce et applications web sur mesure.",
+    "RachidiDev, développeur web fullstack & WordPress à Cotonou, crée des sites vitrines, boutiques WooCommerce et applications web sur mesure avec Next.js et React.",
   keywords: [
     "développeur web",
     "développeur fullstack",
@@ -45,14 +45,14 @@ export const metadata: Metadata = {
     locale: "fr_FR",
     url: siteUrl,
     siteName: "RachidiDev",
-    title: "RachidiDev — Développeur web à Cotonou",
+    title: "RachidiDev — Développeur web fullstack & WordPress",
     description:
-      "Développeur web freelance à Cotonou. Sites WordPress, vitrines, boutiques en ligne et applications web.",
+      "RachidiDev, développeur web fullstack & WordPress à Cotonou. Sites vitrines, boutiques en ligne et applications web sur mesure.",
     images: [socialImage],
   },
   twitter: {
     card: "summary_large_image",
-    title: "RachidiDev — Développeur web à Cotonou",
+    title: "RachidiDev — Développeur web fullstack & WordPress",
     description: "Sites WordPress, sites vitrines et applications web sur mesure.",
     images: [socialImage.url],
   },
@@ -66,7 +66,7 @@ const personJsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: "RachidiDev",
-  jobTitle: "Développeur Fullstack",
+  jobTitle: "Développeur web fullstack & WordPress",
   url: siteUrl,
   email: "contact@rachididev.site",
   telephone: "+2290141786631",
@@ -87,7 +87,7 @@ const professionalServiceJsonLd = {
   "@type": "ProfessionalService",
   name: "RachidiDev",
   description:
-    "Développement de sites WordPress, sites vitrines, applications web et solutions e-commerce sur mesure.",
+    "RachidiDev, développeur web fullstack & WordPress, crée des sites vitrines, applications web et solutions e-commerce sur mesure.",
   url: siteUrl,
   email: "contact@rachididev.site",
   telephone: "+2290141786631",

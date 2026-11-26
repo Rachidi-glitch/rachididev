@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 const socialImage = {
   url: "/images/profile/hero-photo.png",
-  alt: "RachidiDev, développeur web à Cotonou",
+  alt: "RachidiDev, développeur web fullstack & WordPress",
 };
 
 export function createPageMetadata({

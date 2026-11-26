@@ -15,7 +15,7 @@ import { createPageMetadata } from "@/lib/seo";
 export const metadata = createPageMetadata({
   title: "Contact et devis",
   description:
-    "Contactez RachidiDev à Cotonou pour un devis de site WordPress, site vitrine, boutique en ligne ou application web.",
+    "Contactez RachidiDev, développeur web fullstack & WordPress à Cotonou, pour un devis de site vitrine, boutique en ligne ou application web.",
   path: "/contact",
 });
 

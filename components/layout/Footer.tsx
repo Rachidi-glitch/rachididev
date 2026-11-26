@@ -31,8 +31,8 @@ export function Footer() {
             </span>
           </div>
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted">
-            Développeur Fullstack spécialisé WordPress et technologies web
-            modernes.
+            Développeur web fullstack &amp; WordPress, spécialisé dans la
+            création de solutions web modernes.
           </p>
           <div className="mt-6 flex gap-3">
             <a

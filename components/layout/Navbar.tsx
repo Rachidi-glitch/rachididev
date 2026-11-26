@@ -47,7 +47,7 @@ export function Navbar() {
             <span className="text-base font-bold text-white">
               Rachidi<span className="text-brand">Dev</span>
             </span>
-            <span className="text-xs text-muted">Développeur Fullstack</span>
+            <span className="text-xs text-muted">Fullstack &amp; WordPress</span>
           </span>
         </Link>
 

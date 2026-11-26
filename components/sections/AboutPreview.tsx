@@ -37,8 +37,8 @@ export function AboutPreview() {
         <FadeIn>
           <SectionTitle
             eyebrow="À propos de moi"
-            title="Un développeur passionné et polyvalent"
-            description="Je suis RachidiDev, développeur web avec plus de 7 ans d'expérience en WordPress et environ 1 an en développement web moderne. J'aime transformer des idées en sites web performants, modernes et faciles à utiliser."
+            title="Développeur web fullstack & WordPress passionné"
+            description="Je suis RachidiDev, développeur web fullstack & WordPress avec plus de 7 ans d'expérience en WordPress et environ 1 an en développement web moderne. J'aime transformer des idées en sites web performants, modernes et faciles à utiliser."
             align="center"
             className="max-w-3xl"
           />

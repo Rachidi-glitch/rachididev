@@ -35,7 +35,7 @@ export function Hero() {
         >
           <Badge>
             <span className="h-2 w-2 rounded-full bg-brand-light" />
-            Développeur Fullstack
+            Développeur web fullstack & WordPress
           </Badge>
 
           <h1 className="mt-6 text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl lg:text-[3.4rem]">
@@ -45,10 +45,10 @@ export function Hero() {
           </h1>
 
           <p className="mt-6 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
-            Développeur passionné, spécialisé en WordPress depuis plus de 7
-            ans et en développement web moderne. Je conçois des sites web
-            modernes, rapides et performants ainsi que des solutions sur
-            mesure adaptées aux besoins de mes clients.
+            Spécialisé en WordPress depuis plus de 7 ans et en développement
+            web moderne, je conçois des sites modernes, rapides et performants
+            ainsi que des solutions sur mesure adaptées aux besoins de mes
+            clients.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-4">
@@ -86,7 +86,7 @@ export function Hero() {
           <div className="relative aspect-4/5 w-full overflow-hidden rounded-2xl border border-white/10 shadow-glow">
             <Image
               src="/images/profile/hero-photo.png"
-              alt="Photo de RachidiDev, développeur Fullstack"
+              alt="Photo de RachidiDev, développeur web fullstack & WordPress"
               fill
               priority
               sizes="(max-width: 1024px) 90vw, 480px"

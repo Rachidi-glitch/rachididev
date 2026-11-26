@@ -1,7 +1,7 @@
 # RachidiDev — Portfolio
 
-Portfolio professionnel Next.js (App Router) pour un développeur Fullstack
-freelance spécialisé WordPress et développement web moderne.
+Portfolio professionnel Next.js (App Router) pour RachidiDev, développeur web
+fullstack & WordPress, spécialisé en développement web moderne.
 
 ## Stack
 
@@ -58,6 +58,10 @@ charge aussi. Ne partagez pas ces URL et ne les commitez pas. Après avoir
 configuré les URL,
 exécutez `pnpm db:push` une première fois pour créer ou synchroniser la table,
 puis `pnpm db:generate` si le client Prisma doit être régénéré.
+Après un envoi accepté, vérifiez l’événement correspondant dans **Resend →
+Emails** : l’acceptation par l’API ne garantit pas la livraison en boîte de
+réception. Les identifiants des e-mails acceptés sont également consignés dans
+les logs de fonctions Vercel.
 Les anciennes clés `NEXT_PUBLIC_SUPABASE_*` et `SUPABASE_SERVICE_ROLE_KEY` ne
 sont plus utilisées par l'application.
 

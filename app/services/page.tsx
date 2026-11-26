@@ -10,7 +10,7 @@ import { createPageMetadata } from "@/lib/seo";
 export const metadata = createPageMetadata({
   title: "Services web",
   description:
-    "Création de sites WordPress, sites vitrines, boutiques WooCommerce et applications web sur mesure par RachidiDev à Cotonou.",
+    "RachidiDev, développeur web fullstack & WordPress à Cotonou, crée des sites vitrines, boutiques WooCommerce et applications web sur mesure.",
   path: "/services",
 });
 
