@@ -10,6 +10,8 @@ import { Button } from "@/components/ui/Button";
 import { navLinks } from "@/lib/nav-links";
 import { socials } from "@/data/socials";
 
+const footerNavLinks = [...navLinks, { href: "/blog", label: "Blog" }];
+
 export function Footer() {
   const year = new Date().getFullYear();
 
@@ -68,7 +70,7 @@ export function Footer() {
         <div>
           <h3 className="text-sm font-semibold text-white">Navigation</h3>
           <ul className="mt-4 space-y-3">
-            {navLinks.map((link) => (
+            {footerNavLinks.map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
