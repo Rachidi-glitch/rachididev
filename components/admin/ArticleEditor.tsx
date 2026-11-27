@@ -11,10 +11,13 @@ import {
   IconSend,
 } from "@tabler/icons-react";
 import Link from "next/link";
-import { saveArticle } from "@/app/admin/articles/actions";
+import {
+  saveArticle,
+  type ArticleActionState,
+} from "@/app/admin/articles/actions";
 import type { BlogArticle } from "@/lib/blog-store";
 
-const initialState = {};
+const initialState: ArticleActionState = {};
 
 function slugify(value: string) {
   return value
