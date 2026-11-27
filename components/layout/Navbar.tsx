@@ -51,7 +51,7 @@ export function Navbar() {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-1 md:flex">
+        <nav className="hidden items-center gap-1 lg:flex">
           {navLinks.map((link) => {
             const active = pathname === link.href;
             return (
@@ -73,13 +73,13 @@ export function Navbar() {
 
         <ThemeToggle />
 
-        <div className="hidden md:block">
+        <div className="hidden lg:block">
           <Button href="/contact" size="sm">
             Me contacter
           </Button>
         </div>
 
-        <div className="flex items-center gap-2 md:hidden">
+        <div className="flex items-center gap-2 lg:hidden">
           <button
             className="rounded-full p-2 text-white hover:bg-white/10"
             onClick={() => setMenuOpen(true)}

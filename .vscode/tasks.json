@@ -10,6 +10,19 @@
 				"require('node:fs').copyFileSync('C:\\\\Users\\\\DT\\\\AppData\\\\Roaming\\\\Code\\\\agentSessionData\\\\08077175-8855-49f3-a060-c8916b43c6ff\\\\attachments\\\\4361bc5f-be85-4914-a607-ce47300b33a1\\\\crave-hero-800x500.jpg', 'public\\\\images\\\\projects\\\\crave-hero-800x500.jpg')"
 			],
 			"isBackground": false
+		},
+		{
+			"label": "Install admin dashboard dependencies",
+			"type": "shell",
+			"command": "pnpm",
+			"args": [
+				"add",
+				"better-auth",
+				"@better-auth/prisma-adapter",
+				"@vercel/blob"
+			],
+			"isBackground": false,
+			"problemMatcher": []
 		}
 	]
 }

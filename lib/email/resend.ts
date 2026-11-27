@@ -44,9 +44,9 @@ function adminEmailHtml(data: ContactFormValues) {
       <p><strong>Délai souhaité :</strong> ${deadline}</p>
       <p><strong>Message :</strong></p>
       <p style="white-space:pre-line; color:#A8B7C8;">${message}</p>
-      <a href="mailto:${email}" style="display:inline-block; margin-top:24px; background:#0A84FF; color:#fff; text-decoration:none; padding:10px 20px; border-radius:8px;">
-        Répondre à ${name}
-      </a>
+      <p style="margin-top:24px; color:#A8B7C8;">
+        Pour répondre au client, répondez directement à cet e-mail.
+      </p>
     </div>
   </div>`;
 }
