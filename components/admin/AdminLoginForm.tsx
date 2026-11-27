@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useTransition } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { IconEye, IconEyeOff, IconLoader2, IconLock } from "@tabler/icons-react";
 import { authClient } from "@/lib/auth-client";
@@ -106,6 +107,14 @@ export function AdminLoginForm() {
         )}
         {isPending ? "Connexion…" : "Se connecter"}
       </button>
+      <div className="text-center">
+        <Link
+          href="/admin/forgot-password"
+          className="text-sm font-medium text-brand-light transition hover:text-white"
+        >
+          Mot de passe oublié ?
+        </Link>
+      </div>
     </form>
   );
 }

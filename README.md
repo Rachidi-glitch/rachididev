@@ -104,6 +104,11 @@ enregistrer comme brouillon, publier ou supprimer des articles. Les articles
 historiques du blog apparaissent également dans la liste et peuvent être
 modifiés. Les images téléversées depuis l’éditeur sont stockées dans Vercel
 Blob; configurez son token avant d’utiliser cette fonctionnalité.
+Depuis l’écran de connexion, **Mot de passe oublié ?** envoie un lien de
+réinitialisation à l’adresse du compte via Resend. Configurez
+`RESEND_API_KEY`, `RESEND_FROM_EMAIL` et `BETTER_AUTH_URL` en local et dans
+Vercel. Le lien révoque les sessions existantes après modification du mot de
+passe.
 
 ## Contenu à personnaliser
 
